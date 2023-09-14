@@ -1,10 +1,20 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from './Button'
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Navbar() {
 
-    const [isVisible, setIsVisible] = useState(false)
+    const [ isVisible, setIsVisible ] = useState(false)
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+    const signOutOnClick = () => {
+        logout();
+    };
+
+    const signInOnClick = () => {
+        loginWithRedirect();
+    };
 
     const dropDown = () => {
         setIsVisible(!isVisible)
@@ -21,15 +31,19 @@ function Navbar() {
                 <Link to='/' className='font-semibold text-xl tracking-tight'>Inventory</Link>
             </div>
             <div className='block'>
-                <button onClick={dropDown} className='flex items-center px-3 py-2 text-slate-200 border rounded border-slate-400 hover:text-white hover:border-white'>
-                    
+                <button 
+                onClick={dropDown} 
+                className='flex items-center px-3 py-2 text-slate-200 border rounded
+                 border-slate-400 hover:text-white hover:border-white'
+                 >
                     <i className='fas fa-bars'></i>
                 </button>
             </div>
             { isVisible ? (
             <div className='w-full flex-grow items-center'>
                 <div className="text-sm lg:flex-grow">
-                    <Button className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
+                    <Button 
+                    className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
                     onClick={ clicked } 
                     >
                         <div>
@@ -40,7 +54,8 @@ function Navbar() {
                         </div>
                     </Button>
 
-                    <Button className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
+                    <Button 
+                    className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
                     onClick={ clicked } 
                     >
                         <div>
@@ -51,7 +66,8 @@ function Navbar() {
                         </div>
                     </Button>
                     
-                    <Button className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
+                    <Button 
+                    className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
                     onClick={ clicked } 
                     >
                         <div>
@@ -62,7 +78,8 @@ function Navbar() {
                         </div>
                     </Button>
 
-                    <Button className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
+                    <Button 
+                    className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
                     onClick={ clicked } 
                     >
                         <div>
@@ -72,7 +89,36 @@ function Navbar() {
                             </Link>
                         </div>
                     </Button>
-
+                    {
+                            !isAuthenticated ? 
+                            <Button 
+                            className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
+                            onClick={ clicked }
+                            >
+                                <div>
+                                    <Link to="/" onClick={signInOnClick} 
+                                    className='flex place-items-center lg:inline-block
+                                        text-black-200 hover:text-white'
+                                    >
+                                        Sign in
+                                    </Link>
+                                </div>
+                            </Button>
+                            :
+                            <Button 
+                            className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
+                            onClick={ clicked }
+                            >
+                                <div>
+                                    <Link to="/" onClick={signInOnClick} 
+                                        className='flex place-items-center lg:inline-block
+                                            text-black-200 hover:text-white'
+                                        >
+                                            Sign Out
+                                    </Link>
+                                </div>
+                            </Button>
+                        }
                 </div>
             </div>
             ) : (
