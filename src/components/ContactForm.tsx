@@ -1,4 +1,3 @@
-import { useSubmit } from "react-router-dom"
 import Button from "./Button"
 import Input from "./Input"
 import { useState } from "react"
@@ -25,7 +24,7 @@ const ContactForm = ( props:ContactFormProps) => {
         setTimeout( () => {window.location.reload()}, 500)
     }
 
-  const onSubmit = (data: any, event: any) => {
+  const onSubmit = (data: any) => {
     console.log(`ID: ${typeof props.id}`);
     console.log(props.id)
     console.log(data)

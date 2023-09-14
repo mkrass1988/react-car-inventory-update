@@ -110,7 +110,7 @@ function Navbar() {
                             onClick={ clicked }
                             >
                                 <div>
-                                    <Link to="/" onClick={signInOnClick} 
+                                    <Link to="/" onClick={signOutOnClick} 
                                         className='flex place-items-center lg:inline-block
                                             text-black-200 hover:text-white'
                                         >
