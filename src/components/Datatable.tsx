@@ -49,7 +49,7 @@ function DataTable() {
                     className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white"
                     onClick={() => handleOpen()}
                 >
-                    Create New Contact
+                    Add a New Car
                 </button>
             </div> 
             <Button onClick={handleOpen} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white" >Update</Button>
