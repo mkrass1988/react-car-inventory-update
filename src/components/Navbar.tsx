@@ -77,7 +77,8 @@ function Navbar() {
                             </Link>
                         </div>
                     </Button>
-
+                    
+                    { isAuthenticated ?
                     <Button 
                     className='p-3 m-5 bg-slate-500 hover:bg-slate-400 hover:text-white rounded'
                     onClick={ clicked } 
@@ -88,7 +89,10 @@ function Navbar() {
                                 Dashboard
                             </Link>
                         </div>
-                    </Button>
+                    </Button> :
+                    <></>
+                    }
+                    
                     {
                             !isAuthenticated ? 
                             <Button 
